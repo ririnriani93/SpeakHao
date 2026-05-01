@@ -11,7 +11,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9110BD512FA489E9002319FC /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainMenuView.swift; path = /Users/nfahrisalim/Documents/MainMenuView.swift; sourceTree = "<absolute>"; };
+		9110BD512FA489E9002319FC /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainMenuView.swift; path = /Users/nfahrisalim/Public/Swift/SpeakHao/Views/MainMenu/MainMenuView.swift; sourceTree = "<absolute>"; };
 		91DD99132FA4795F009D6D87 /* SpeakHao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeakHao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
