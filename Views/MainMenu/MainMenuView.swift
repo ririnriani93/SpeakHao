@@ -27,7 +27,7 @@ struct MainMenuView: View {
             }
             .ignoresSafeArea()
 
-            // 3. Gradient Overlay
+            // Gradient Overlay
             LinearGradient(
                 gradient: Gradient(stops: [
                     .init(color: Color(red: 73/255, green: 138/255, blue: 186/255, opacity: 0), location: 0),
@@ -39,7 +39,7 @@ struct MainMenuView: View {
             )
             .ignoresSafeArea()
 
-            // 4. Content Layer
+            // Content Layer
             VStack(alignment: .leading, spacing: 0) {
                 Spacer()
 
@@ -112,7 +112,7 @@ struct GlassButton: View {
 
     var body: some View {
         ZStack {
-            // Liquid Glass Background 
+            // Liquid Glass Background
             RoundedRectangle(cornerRadius: 1000)
                 .fill(
                     LinearGradient(
