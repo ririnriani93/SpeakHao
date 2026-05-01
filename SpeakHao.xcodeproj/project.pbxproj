@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9110BD522FA489E9002319FC /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110BD512FA489E9002319FC /* MainMenuView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		9110BD512FA489E9002319FC /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainMenuView.swift; path = /Users/nfahrisalim/Public/Swift/SpeakHao/Views/MainMenu/MainMenuView.swift; sourceTree = "<absolute>"; };
 		91DD99132FA4795F009D6D87 /* SpeakHao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeakHao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -42,6 +47,7 @@
 		9110BD502FA489C4002319FC /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				9110BD512FA489E9002319FC /* MainMenuView.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -175,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9110BD522FA489E9002319FC /* MainMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
