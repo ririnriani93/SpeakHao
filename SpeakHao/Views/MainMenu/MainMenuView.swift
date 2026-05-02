@@ -8,136 +8,147 @@
 import SwiftUI
 
 struct MainMenuView: View {
+    
+    let chapterNumber: Int
+    let chapterTitle: String
+    let chapterPreview: String
+    let characterImage: String
+    
+
+    
     var body: some View {
-        ZStack(alignment: .bottom) {
-            // Background Image
-            Image("Background")
-                .resizable()
-                .ignoresSafeArea()
-
-            // Character Image
-            VStack {
-                Image("character_idle")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxHeight: .infinity, alignment: .topLeading)
-                    .scaleEffect(0.75)
+        
+            ZStack(alignment: .center) {
+//                // Background Image
+//                Image("Background")
+//                    .resizable()
+//                    .scaleEffect(1.7)
+//                    .offset(x: -140, y: -300)
+//                    .ignoresSafeArea()
                 
-                Spacer()
-            }
-            .ignoresSafeArea()
-
-            // Gradient Overlay
-            LinearGradient(
-                gradient: Gradient(stops: [
-                    .init(color: Color(red: 73/255, green: 138/255, blue: 186/255, opacity: 0), location: 0),
-                    .init(color: Color(red: 226/255, green: 90/255, blue: 0/255, opacity: 0.43), location: 0.3),
-                    .init(color: Color(red: 204/255, green: 58/255, blue: 0/255, opacity: 0.9), location: 0.65)
-                ]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
-
-            // Content Layer
-            VStack(alignment: .leading, spacing: 0) {
-                Spacer()
-
-                // Chapter Title
-                Text("Chapter #1 :")
-                    .font(.system(size: 22, weight: .bold))
-                    .foregroundColor(.white)
-                    .shadow(color: Color.black.opacity(0.45), radius: 4, x: 0, y: 0)
-                    .padding(.leading, 20)
-
-                // Subtitle
-                Text("Self Introduction at New Company")
-                    .font(.system(size: 34, weight: .bold))
-                    .foregroundColor(.white)
-                    .shadow(color: Color.black.opacity(0.45), radius: 4, x: 0, y: 0)
-                    .padding(.leading, 20)
-                    .padding(.top, 7)
-                    .lineSpacing(7)
-
-                // Description
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel dolor vitae libero facilisis vestibulum. Integer sit amet turpis arcu. Nunc tempor nibh molestie elit mattis tempus. Suspendisse diam est, tristique ut nibh in Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
-                    .font(.system(size: 15, weight: .regular))
-                    .foregroundColor(.white)
-                    .shadow(color: Color.black.opacity(0.45), radius: 4, x: 0, y: 0)
-                    .multilineTextAlignment(.leading)
-                    .padding(.leading, 20)
-                    .padding(.top, 20)
-                    .lineSpacing(3)
-
-                Spacer()
-                    .frame(height: 20)
-
-                // Glass Button
-                HStack {
+                // Character Image
+                VStack {
+                    Image(characterImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxHeight: .infinity, alignment: .topLeading)
+                        .scaleEffect(0.90)
+                        .offset(x:0, y: 90)
+                }
+                .ignoresSafeArea()
+                
+                // Gradient Overlay
+                LinearGradient(
+                    gradient: Gradient(stops: [
+                        .init(color: Color(red: 73/255, green: 138/255, blue: 186/255, opacity: 0), location: 0),
+                        .init(color: Color(red: 226/255, green: 90/255, blue: 0/255, opacity: 0.43), location: 0.3),
+                        .init(color: Color(red: 204/255, green: 58/255, blue: 0/255, opacity: 0.9), location: 0.65)
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
+                
+                // Content Layer
+                VStack(alignment: .leading, spacing: 0) {
                     Spacer()
                     
-                    GlassButton(title: "Mulai Percakapan")
-                        .frame(height: 48)
-                        .frame(maxWidth: 180)
                     
-                    Spacer()
+                    // Chapter Number
+                    Text("Chapter #\(chapterNumber) :")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.white)
+                        .shadow(color: Color.black.opacity(0.45), radius: 4, x: 0, y: 0)
+                    
+                    // Title
+                    Text(chapterTitle)
+                        .font(.system(size: 34, weight: .bold))
+                        .foregroundColor(.white)
+                        .shadow(color: Color.black.opacity(0.45), radius: 4, x: 0, y: 0)
+                        .kerning(0.4)
+                        .padding(.top, 7)
+                        .lineSpacing(7)
+                    
+                    // Preview
+                    Text(chapterPreview)
+                        .font(.system(size: 15, weight: .regular))
+                        .foregroundColor(.white)
+                        .shadow(color: Color.black.opacity(0.45), radius: 4, x: 0, y: 0)
+                        .multilineTextAlignment(.leading)
+                        .padding(.top, 12)
+                        .padding(.bottom, 30)
+                        .lineSpacing(3)
+                    
+                    // Button
+                    HStack {
+                        Spacer()
+                        
+                        GlassButton(title: "Mulai Percakapan")
+                            .frame(maxHeight: 48)
+                            .frame(width: 220)
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 90)
+                    
+                    // Page Control Dots
+//                    HStack(spacing: 8) {
+//                        Circle()
+//                            .fill(Color.white)
+//                            .frame(width: 8, height: 8)
+//                        
+//                        Circle()
+//                            .fill(Color.white.opacity(0.3))
+//                            .frame(width: 8, height: 8)
+//                        
+//                        Circle()
+//                            .fill(Color.white.opacity(0.3))
+//                            .frame(width: 8, height: 8)
+//                    }
+//                    .padding(.bottom, 40)
+//                    .frame(maxWidth: .infinity, alignment: .center)
                 }
-                .padding(.horizontal, 20)
-                .padding(.bottom, 16)
-
-                // Page Control Dots
-                HStack(spacing: 8) {
-                    Circle()
-                        .fill(Color.white)
-                        .frame(width: 8, height: 8)
-
-                    Circle()
-                        .fill(Color.white.opacity(0.3))
-                        .frame(width: 8, height: 8)
-
-                    Circle()
-                        .fill(Color.white.opacity(0.3))
-                        .frame(width: 8, height: 8)
-                }
-                .padding(.bottom, 40)
-                .frame(maxWidth: .infinity, alignment: .center)
+                .frame(width: 348)
             }
-        }
-        .ignoresSafeArea()
+            .ignoresSafeArea()
     }
 }
 
 struct GlassButton: View {
     let title: String
-
+    
     var body: some View {
         ZStack {
             // Liquid Glass Background
             RoundedRectangle(cornerRadius: 1000)
                 .fill(
-                    LinearGradient(
-                        gradient: Gradient(colors: [
-                            Color(red: 80/255, green: 170/255, blue: 255/255, opacity: 0.9),
-                            Color(red: 120/255, green: 190/255, blue: 255/255, opacity: 0.8)
-                        ]),
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
+                    Color(.displayP3, red: 0/255, green: 100/255, blue: 255/255)
                 )
+            
                 .overlay(
                     RoundedRectangle(cornerRadius: 1000)
-                        .stroke(Color.white.opacity(0.8), lineWidth: 1.5)
+                        .strokeBorder(
+                            LinearGradient(
+                                stops: [
+                                    .init(color: .white.opacity(0.38), location: 0),
+                                    .init(color: Color(.displayP3, red: 0/255, green: 100/255, blue: 255/255, opacity: 1), location: 0.2),
+                                    .init(color: Color(.displayP3, red: 0/255, green: 100/255, blue: 255/255, opacity: 1), location: 0.8),
+                                    .init(color: .white.opacity(0.38), location: 1)],
+                                startPoint: UnitPoint(x: 0.4, y:0),
+                                endPoint: UnitPoint(x:0.6, y:1)),
+                            lineWidth: 1
+                        )
                 )
-                .shadow(color: Color(red: 80/255, green: 170/255, blue: 255/255, opacity: 0.5), radius: 15, x: 0, y: 8)
-
+            
             // Button Text
             Text(title)
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: 17, weight: .medium))
                 .foregroundColor(.white)
         }
     }
 }
 
-#Preview {
-    MainMenuView()
-}
+//#Preview {
+//    MainMenuView(chapterNumber: <#T##Int#>, chapterTitle: <#T##String#>, chapterPreview: <#T##String#>, characterImage: <#T##String#>)
+//}
