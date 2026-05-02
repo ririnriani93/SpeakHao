@@ -21,7 +21,7 @@ struct MainMenuView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxHeight: .infinity, alignment: .topLeading)
-                    .scaleEffect(0.95)
+                    .scaleEffect(0.75)
                 
                 Spacer()
             }
@@ -31,8 +31,8 @@ struct MainMenuView: View {
             LinearGradient(
                 gradient: Gradient(stops: [
                     .init(color: Color(red: 73/255, green: 138/255, blue: 186/255, opacity: 0), location: 0),
-                    .init(color: Color(red: 226/255, green: 90/255, blue: 0/255, opacity: 0.43), location: 0.298),
-                    .init(color: Color(red: 204/255, green: 58/255, blue: 0/255, opacity: 0.9), location: 0.654)
+                    .init(color: Color(red: 226/255, green: 90/255, blue: 0/255, opacity: 0.43), location: 0.3),
+                    .init(color: Color(red: 204/255, green: 58/255, blue: 0/255, opacity: 0.9), location: 0.65)
                 ]),
                 startPoint: .top,
                 endPoint: .bottom
@@ -138,8 +138,6 @@ struct GlassButton: View {
     }
 }
 
-struct MainMenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainMenuView()
-    }
+#Preview {
+    MainMenuView()
 }

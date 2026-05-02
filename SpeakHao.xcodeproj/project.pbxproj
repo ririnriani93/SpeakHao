@@ -6,27 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		9110BD522FA489E9002319FC /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110BD512FA489E9002319FC /* MainMenuView.swift */; };
-		9110BD592FA499D9002319FC /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110BD582FA499D8002319FC /* SplashScreenView.swift */; };
-		9110BD5B2FA499ED002319FC /* InteractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110BD5A2FA499EB002319FC /* InteractionView.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		9110BD512FA489E9002319FC /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainMenuView.swift; path = /Users/nfahrisalim/Public/Swift/SpeakHao/Views/MainMenu/MainMenuView.swift; sourceTree = "<absolute>"; };
-		9110BD582FA499D8002319FC /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
-		9110BD5A2FA499EB002319FC /* InteractionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionView.swift; sourceTree = "<group>"; };
-		9110BD5C2FA49A00002319FC /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
-		9110BD5D2FA49A13002319FC /* Scenario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
 		91DD99132FA4795F009D6D87 /* SpeakHao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeakHao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		9110BD5E2FA49A27002319FC /* FoundationModelsService */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = FoundationModelsService;
-			sourceTree = "<group>";
-		};
 		91DD99152FA4795F009D6D87 /* SpeakHao */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SpeakHao;
@@ -45,73 +29,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9110BD4F2FA48988002319FC /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				9110BD542FA48AC5002319FC /* Interaction */,
-				9110BD532FA48ABB002319FC /* Splash */,
-				9110BD502FA489C4002319FC /* MainMenu */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		9110BD502FA489C4002319FC /* MainMenu */ = {
-			isa = PBXGroup;
-			children = (
-				9110BD512FA489E9002319FC /* MainMenuView.swift */,
-			);
-			path = MainMenu;
-			sourceTree = "<group>";
-		};
-		9110BD532FA48ABB002319FC /* Splash */ = {
-			isa = PBXGroup;
-			children = (
-				9110BD582FA499D8002319FC /* SplashScreenView.swift */,
-			);
-			path = Splash;
-			sourceTree = "<group>";
-		};
-		9110BD542FA48AC5002319FC /* Interaction */ = {
-			isa = PBXGroup;
-			children = (
-				9110BD5A2FA499EB002319FC /* InteractionView.swift */,
-			);
-			path = Interaction;
-			sourceTree = "<group>";
-		};
-		9110BD552FA48AF3002319FC /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				9110BD5C2FA49A00002319FC /* ConversationViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		9110BD562FA48B03002319FC /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				9110BD5D2FA49A13002319FC /* Scenario.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		9110BD572FA48B16002319FC /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				9110BD5E2FA49A27002319FC /* FoundationModelsService */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		91DD990A2FA4795F009D6D87 = {
 			isa = PBXGroup;
 			children = (
-				9110BD572FA48B16002319FC /* Services */,
-				9110BD562FA48B03002319FC /* Models */,
-				9110BD552FA48AF3002319FC /* ViewModels */,
 				91DD99152FA4795F009D6D87 /* SpeakHao */,
 				91DD99142FA4795F009D6D87 /* Products */,
-				9110BD4F2FA48988002319FC /* Views */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,9 +119,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9110BD522FA489E9002319FC /* MainMenuView.swift in Sources */,
-				9110BD5B2FA499ED002319FC /* InteractionView.swift in Sources */,
-				9110BD592FA499D9002319FC /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
