@@ -10,7 +10,7 @@ import SwiftUI
 struct InteractionSceneView: View {
     var body: some View {
         ZStack {
-            // Background Image - Zoomed (melebar)
+            // Background Image
             // ADJUST: scaleEffect(1.2) untuk zoom
             // ADJUST: offset(x: 0, y: 0) untuk posisi
             Image("Background")
