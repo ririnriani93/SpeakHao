@@ -17,7 +17,7 @@ struct InteractionSceneView: View {
                 .resizable()
                 .scaledToFill()
                 .scaleEffect(1.7)
-                .offset(x: -140, y: -250)
+                .offset(x: -140, y: -300)
                 .ignoresSafeArea()
 
             // Character Image
@@ -28,8 +28,9 @@ struct InteractionSceneView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxHeight: .infinity, alignment: .topLeading)
-                    .scaleEffect(0.98)
-                    .offset(x: -85, y: 152)
+                    .scaleEffect(0.90)
+                    .offset(x: -85, y: 90)
+                
                 
                 Spacer()
             }
