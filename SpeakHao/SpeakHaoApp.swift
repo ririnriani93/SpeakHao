@@ -11,7 +11,7 @@ import SwiftUI
 struct SpeakHaoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            InteractionPageNpc()
         }
     }
 }
