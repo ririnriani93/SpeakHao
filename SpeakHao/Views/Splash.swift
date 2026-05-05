@@ -23,14 +23,14 @@ struct Splash: View {
                         Image("cth")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 100, height: 100)
+                            .frame(width: 150, height: 150)
                             .foregroundStyle(.white)
                             .padding()
                     }
                 }
                 .onAppear{
                     DispatchQueue.main.asyncAfter(deadline:
-                            .now() + 0.5) {
+                            .now() + 1.0) {
                                 withAnimation(.easeInOut(duration: 1.0)) {
                                     skenario = true
                                 }

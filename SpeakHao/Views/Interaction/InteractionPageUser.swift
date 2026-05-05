@@ -8,39 +8,20 @@
 import SwiftUI
 
 struct InteractionPageUser: View {
+    @State private var goToMainMenu = false
+    @State private var showBackAlert = false
     @State private var isPressed = false
     @State private var pinyin = ""
     @State private var chinese = ""
     @State private var translation = ""
     
     var body: some View {
+        NavigationStack {
         GeometryReader { geo in
             ZStack {
-                // Background Image
-                // ADJUST: scaleEffect(1.2) untuk zoom
-                // ADJUST: offset(x: 0, y: 0) untuk posisi
-                Image("Background")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: geo.size.width, height: geo.size.height)
-                    .scaleEffect(1.7)
-                    .offset(x: -140, y: -220)
+                InteractionSceneView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .ignoresSafeArea()
-                
-                // Character Image
-                // ADJUST: scaleEffect(0.75) untuk ukuran
-                // ADJUST: offset(x: -80, y: 136) untuk posisi
-                VStack {
-                    Spacer()
-                    Image("character_idle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxHeight: .infinity, alignment: .topLeading)
-                        .scaleEffect(0.90)
-                        .offset(x: -70, y: 90)
-                    Spacer()
-                }
-                .ignoresSafeArea()
                 
                 // Interaction Container
                 VStack(spacing: 12) {
@@ -48,6 +29,7 @@ struct InteractionPageUser: View {
                     NavigationBar(
                         onBack: {
                             print("Back tapped")
+                            showBackAlert = true
                         },
                         onHistory: {
                             print("History tapped")
@@ -63,7 +45,7 @@ struct InteractionPageUser: View {
                         translationText: $translation
                     )
                     .padding(.bottom, 12)
-                
+                    
                     
                     // MARK: - Container P (button to repeat earlier question)
                     Button(action: {
@@ -108,9 +90,39 @@ struct InteractionPageUser: View {
                     
                 }
             }
+            .navigationBarBackButtonHidden(true)
+                .toolbar(.hidden, for: .navigationBar)
+            .customAlert(
+                isPresented: $showBackAlert,
+                alert: PopUpData(
+                    icon: "pause.circle",
+                    iconColor: .black,
+                    title: "Percakapan Dijeda",
+                    secondaryButtonTitle: "Lanjutkan Percakapan",
+                    primaryButtonTitle: "Keluar dari Percakapan",
+                    secondaryAction: {
+                        showBackAlert = false  // tutup alert, tetap di halaman
+                    },
+                    primaryAction: {
+                        showBackAlert = false
+                        goToMainMenu = true  // ← navigasi ke MainMenuSwipe
+                    }
+                )
+            )
         }
+        // Letakkan NavigationLink “invisible” di level paling atas dalam NavigationStack
+            .background(
+                NavigationLink(destination: InteractionNPCView(), isActive: $goToMainMenu) {
+                    EmptyView()
+                }
+            )
+        }
+//        .navigationBarBackButtonHidden(true)
     }
 }
+
+
+
 
  
 
@@ -133,7 +145,7 @@ struct SpeechBubbleUser: View {
             
             VStack(alignment: .leading, spacing: 10) {
                 
-                // 🔥 TEXT AREA (SCROLLABLE)
+                // TEXT AREA (SCROLLABLE)
                 ScrollView {
                     VStack(alignment: .leading, spacing: 6) {
                         
@@ -158,10 +170,10 @@ struct SpeechBubbleUser: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 10)
                 }
-                .frame(maxHeight: 120) // 🔥 scroll aktif kalau kepanjangan
+                .frame(maxHeight: 120) //scroll aktif kalau kepanjangan
                 
                 
-                // 🔥 ACTION BUTTONS
+                // ACTION BUTTONS
                 HStack {
                     
                     // DELETE
@@ -205,7 +217,7 @@ struct SpeechBubbleUser: View {
             .padding(14)
             .frame(maxWidth: 400)
             
-            // 🔥 BACKGROUND GLASS
+            // BACKGROUND GLASS
             .background(
                 ZStack {
                     RoundedRectangle(cornerRadius: 40)
@@ -267,21 +279,17 @@ struct BubbleTail: Shape {
 //// Interaction Container
 //VStack {
 //    Spacer()
-//    
+//
 //    // container D
 //    ZStack {
 //        // bubble image
-//        RoundedRectangle(cornerRadius: 20)
-//            .fill(Color.white)
-//            .frame(width: 370, height: 200, alignment: .bottomLeading)
-//            .offset(x: -25)
-//        
+//
 //        VStack {
 //            // textview pinyin
 //            // textview hanzi
 //            // textview terjemahan
 //            Text("")
-//            
+//
 //            // text action container
 //            HStack {
 //                // delete & send button

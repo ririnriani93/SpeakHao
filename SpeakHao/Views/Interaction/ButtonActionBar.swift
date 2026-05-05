@@ -5,6 +5,7 @@
 //  Created by M. TAQWA ADDARI on 04/05/26.
 //
 
+
 import SwiftUI
 
 struct BottomActionBar: View {
@@ -46,32 +47,33 @@ struct BottomActionBar: View {
                             .background(Color.white, in: Circle())
                             .shadow(color: .black.opacity(0.1), radius: 8, y: 4)
                     }
+                    .hidden()
                 }
                 .padding(.horizontal, 25)
-                
             }
-            .offset(x: 1, y: 15)
-            
+            .offset(x: 1, y: 30)
             
             Text("Tekan dan tahan untuk jawab")
                 .font(.system(size: 13))
                 .foregroundColor(.black.opacity(0.5))
                 .padding(.bottom, 20)
                 .offset(x: 1, y: 17)
-            
+                .hidden()
         }
         .padding(.top, 25)
+        // ✅ Background disamakan dengan ActionBar milik Ririn
         .background(
-           
-            Rectangle()
-                .fill(Color.white.opacity(0.4))
-                .background(.ultraThinMaterial)
-                .clipShape(CustomCorner(radius: 35, corners: [.topLeft, .topRight]))
-                .ignoresSafeArea(edges: .bottom)
+            ZStack {
+                CustomCornerShape(corners: [.topLeft, .topRight], radius: 30)
+                    .fill(.ultraThinMaterial)
+                CustomCornerShape(corners: [.topLeft, .topRight], radius: 30)
+                    .fill(Color.white.opacity(0.2))
+                    .blendMode(.plusLighter)
+            }
+            .ignoresSafeArea()
         )
     }
 }
-
 
 #Preview {
     BottomActionBar(isPressed: .constant(false))
