@@ -14,7 +14,7 @@ struct NavigationBar: View {
     var body: some View {
         HStack {
             // Back Button
-            Button(action: {}) {
+            Button(action: onBack) {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(.black.opacity(0.7))
@@ -37,7 +37,7 @@ struct NavigationBar: View {
             Spacer()
             
             // History Button
-            Button(action: {}) {
+            Button(action: onHistory) {
                 HStack(spacing: 6) {
                     Image(systemName: "clock.arrow.circlepath")
                         .font(.system(size: 14, weight: .medium))
@@ -61,3 +61,4 @@ struct NavigationBar: View {
         .padding(.top, 10)
     }
 }
+
