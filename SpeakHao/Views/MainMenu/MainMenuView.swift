@@ -19,14 +19,6 @@ struct MainMenuView: View {
     var body: some View {
         
         ZStack(alignment: .center) {
-            //                // Background Image
-            //                Image("Background")
-            //                    .resizable()
-            //                    .scaleEffect(1.7)
-            //                    .offset(x: -140, y: -300)
-            //                    .ignoresSafeArea()
-            
-            // Character Image
             VStack {
                 Image(characterImage)
                     .resizable()

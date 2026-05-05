@@ -34,6 +34,8 @@ struct ConversationStage {
 struct NPCScenario {
     let id: String
     let title: String
+    /// Deskripsi chapter untuk ditampilkan di menu
+    let description: String
  
     /// System prompt dasar, dipakai di semua stage
     let baseSystemPrompt: String
@@ -45,9 +47,10 @@ struct NPCScenario {
     var currentStageIndex: Int = 0
     
     /// Explicit initializer
-    init(id: String, title: String, baseSystemPrompt: String, stages: [ConversationStage]) {
+    init(id: String, title: String, description: String = "", baseSystemPrompt: String, stages: [ConversationStage]) {
         self.id = id
         self.title = title
+        self.description = description
         self.baseSystemPrompt = baseSystemPrompt
         self.stages = stages
         self.currentStageIndex = 0
@@ -172,4 +175,3 @@ extension ScenarioProvider {
         )
     }
 }
- 

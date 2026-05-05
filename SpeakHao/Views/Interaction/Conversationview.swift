@@ -5,15 +5,17 @@
 //  Created by Muh. Naufal Fahri Salim on 5/5/26.
 //
 
-
 import SwiftUI
 
 struct ConversationView: View {
 
-    @StateObject private var vm = InteractionViewModel(
-        scenario: ScenarioRegistry.all[0]
-    )
+    @StateObject private var vm: InteractionViewModel
 
+    init(scenario: NPCScenario = ScenarioRegistry.all[0]) {
+        _vm = StateObject(wrappedValue: InteractionViewModel(scenario: scenario))
+    }
+
+   
     @State private var showNPCTranslation = false
     @State private var isHoldingMic       = false
     @State private var isPressed          = false
@@ -23,44 +25,38 @@ struct ConversationView: View {
         GeometryReader { geo in
             ZStack {
 
-                // ── SCENE ─────────────────────────────────────────────────
                 InteractionSceneView()
                     .ignoresSafeArea()
 
                 VStack(spacing: 0) {
 
-                    // ── TOP BAR ───────────────────────────────────────────
                     topBar
                         .padding(.top, geo.safeAreaInsets.top > 0 ? 10 : 20)
 
                     Spacer()
 
-                    // ── GENERATING INDICATOR ──────────────────────────────
+
                     if vm.isGenerating {
                         generatingIndicator
                             .padding(.bottom, 8)
                             .transition(.opacity)
                     }
 
-                    // ── BUBBLE NPC — selalu ada ───────────────────────────
                     npcBubble
                         .padding(.horizontal, 40)
                         .opacity(bubbleVisible ? 1 : 0)
-                        .padding(.bottom, 12)   // diam di tempat, tidak naik
+                        .padding(.bottom, 12)
 
-                    // ── BUBBLE USER — hanya saat hold mic ─────────────────
                     if isHoldingMic || !vm.pendingUserText.isEmpty {
                         userBubble
                             .padding(.bottom, 12)
                             .transition(.opacity.combined(with: .move(edge: .bottom)))
                     }
 
-                    // ── TOMBOL REPEAT ─────────────────────────────────────
+
                     repeatButton
                         .padding(.horizontal, 40)
                         .padding(.bottom, 20)
-
-                    // ── ACTION BAR (mic) ──────────────────────────────────
                     ActionBar(
                         isPressed:         $isPressed,
                         onMainAction:      { },
@@ -85,6 +81,7 @@ struct ConversationView: View {
             }
         }
         .ignoresSafeArea(.keyboard)
+        .navigationBarHidden(true)
         .animation(.easeInOut(duration: 0.25), value: isHoldingMic)
         .animation(.easeInOut(duration: 0.2),  value: vm.isGenerating)
         .onAppear {
@@ -120,7 +117,6 @@ struct ConversationView: View {
 
             Spacer()
 
-            // Riwayat — hidden sesuai permintaan
             Button(action: { }) {
                 HStack(spacing: 6) {
                     Image(systemName: "clock.arrow.circlepath")
@@ -138,7 +134,7 @@ struct ConversationView: View {
         .padding(.horizontal, 20)
     }
 
-    // MARK: - Bubble NPC
+    // Bubble NPC
 
     private var npcBubble: some View {
         let lastNPC = vm.messages.last(where: { $0.role == .npc })
@@ -153,7 +149,7 @@ struct ConversationView: View {
         }
     }
 
-    // MARK: - Bubble User
+    // Bubble User
 
     private var userBubble: some View {
         let liveText = vm.pendingUserText
@@ -164,7 +160,7 @@ struct ConversationView: View {
         )
     }
 
-    // MARK: - Repeat Button (dari InteractionPageUser)
+    // Repeat Button
 
     private var repeatButton: some View {
         Button(action: { vm.speakCurrentNPCMessage() }) {
@@ -175,17 +171,11 @@ struct ConversationView: View {
                 .padding(.vertical, 14)
                 .frame(maxWidth: .infinity)
         }
-        .background(
-            Capsule()
-                .fill(.ultraThinMaterial)
-        )
-        .overlay(
-            Capsule()
-                .stroke(Color.white.opacity(0.4), lineWidth: 1)
-        )
+        .background(Capsule().fill(.ultraThinMaterial))
+        .overlay(Capsule().stroke(Color.white.opacity(0.4), lineWidth: 1))
     }
 
-    // MARK: - Mic Icon
+    // Mic Icon
 
     private var micIcon: some View {
         ZStack {
@@ -205,7 +195,7 @@ struct ConversationView: View {
         }
     }
 
-    // MARK: - Generating Indicator
+    // Generating Indicator
 
     private var generatingIndicator: some View {
         HStack(spacing: 6) {
@@ -228,7 +218,7 @@ struct ConversationView: View {
         .background(Capsule().fill(Color.black.opacity(0.35)))
     }
 
-    // MARK: - Helpers
+    // Helpers
 
     private func startHolding() {
         isHoldingMic = true
@@ -244,8 +234,10 @@ struct ConversationView: View {
     }
 }
 
-// MARK: - Preview
+// Preview
 
 #Preview {
-    ConversationView()
+    NavigationStack {
+        ConversationView()
+    }
 }
