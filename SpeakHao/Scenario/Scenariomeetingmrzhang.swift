@@ -14,6 +14,7 @@ struct ClientMeetingMrZhangScenario: ScenarioProvider {
         NPCScenario(
             id: "client_meeting_mr_zhang",
             title: "Online Meeting: Mr. Zhang",
+            description: "You play a developer building an internal management system for a client based in Shanghai. Mr. Zhang (张先生) has called to check on your progress, ask about any blockers, and find out when the system will be ready. He's polite but firm he wants it done in 2 days. Practice answering professional questions in Mandarin and negotiate the deadline with confidence.",
             baseSystemPrompt: """
             You are Mr. Zhang (张先生), a professional client representative from Shanghai.
             You're in a meeting with a developer building an internal management system.

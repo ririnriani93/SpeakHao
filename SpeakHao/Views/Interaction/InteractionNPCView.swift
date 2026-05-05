@@ -42,7 +42,7 @@ struct InteractionNPCView: View {
                     .padding(.horizontal, 40)
                     .padding(.bottom, geometry.size.height * 0.2)
                     .opacity(speechBubbleVisible ? 1 : 0)
-                    .offset(x: 5, y: -80) // ini digunakan untuk mengatur posisi bubble
+                    .offset(x: 5, y: -80) 
                     
                     BottomActionBar(
                         isPressed: $isPressed,

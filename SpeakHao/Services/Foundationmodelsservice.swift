@@ -5,13 +5,6 @@
 //  Created by Muh. Naufal Fahri Salim on 5/4/26.
 //
 
-//
-//  Foundationmodelsservice.swift
-//  SpeakHao
-//
-//  Created by Muh. Naufal Fahri Salim on 5/4/26.
-//
-
 import Foundation          
 import Combine
 import FoundationModels
