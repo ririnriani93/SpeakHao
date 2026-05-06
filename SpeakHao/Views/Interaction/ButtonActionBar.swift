@@ -18,7 +18,7 @@ struct BottomActionBar: View {
             ZStack {
                 // Button Utama: Jawab
                 Button(action: {}) {
-                    Text("Jawab")
+                    Text("Answer")
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(.white)
                         .padding(.horizontal, 40)
@@ -53,7 +53,7 @@ struct BottomActionBar: View {
             }
             .offset(x: 1, y: 30)
             
-            Text("Tekan dan tahan untuk jawab")
+            Text("Tap and hold to answer")
                 .font(.system(size: 13))
                 .foregroundColor(.black.opacity(0.5))
                 .padding(.bottom, 20)

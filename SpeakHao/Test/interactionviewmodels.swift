@@ -4,7 +4,6 @@
 //
 //  Created by Muh. Naufal Fahri Salim on 5/4/26.
 //
-
 import Foundation
 import Combine
 
@@ -117,6 +116,12 @@ class InteractionViewModel: ObservableObject {
     func speakCurrentNPCMessage() {
         guard let lastNPC = messages.last(where: { $0.role == .npc }) else { return }
         speakMessage(lastNPC)
+    }
+
+    /// Stop TTS segera — dipanggil saat jeda atau keluar percakapan
+    func stopSpeaking() {
+        speechSynthesis.stopSpeaking()
+        isNPCSpeaking = false
     }
 
     func reset() {

@@ -4,6 +4,18 @@
 //
 //  Created by Muh. Naufal Fahri Salim on 5/1/26.
 //
+//
+//  Scenariomenubridge.swift
+//  SpeakHao
+//
+//  Created by Muh. Naufal Fahri Salim on 5/6/26.
+//
+//
+//  MainMenuView.swift
+//  SpeakHao
+//
+//  Created by Muh. Naufal Fahri Salim on 5/1/26.
+//
 
 import SwiftUI
 
@@ -13,6 +25,7 @@ struct MainMenuView: View {
     let chapterTitle: String
     let chapterPreview: String
     let characterImage: String
+    var onStart: (() -> Void)? = nil
     
     
     
@@ -89,7 +102,7 @@ struct MainMenuView: View {
                     Spacer()
                     
                     Button ("Mulai Percakapan"){
-                        // action yang terjadi
+                        onStart?()
                     }
                     .frame(width :220, height: 48)
                     .buttonStyle(GlassButtonStyle())

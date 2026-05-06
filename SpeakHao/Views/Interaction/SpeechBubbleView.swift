@@ -29,7 +29,7 @@ struct SpeechBubbleView: View {
             if showTranslation {
                 Text(translationText)
                     .font(.system(size: 14).italic())
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.blue)
                     .fixedSize(horizontal: false, vertical: true)
             } else {
                 Button(action: { withAnimation { showTranslation = true } }) {

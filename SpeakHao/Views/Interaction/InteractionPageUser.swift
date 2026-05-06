@@ -17,115 +17,103 @@ struct InteractionPageUser: View {
     
     var body: some View {
         NavigationStack {
-        GeometryReader { geo in
-            ZStack {
-                InteractionSceneView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .ignoresSafeArea()
-                
-                // Interaction Container
-                VStack(spacing: 12) {
-                    // Top Bar
-                    NavigationBar(
-                        onBack: {
-                            print("Back tapped")
-                            showBackAlert = true
+            GeometryReader { geo in
+                ZStack {
+                    InteractionSceneView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .ignoresSafeArea()
+                    
+                    // Interaction Container
+                    VStack(spacing: 12) {
+                        // Top Bar
+                        NavigationBar(
+                            onBack: {
+                                print("Back tapped")
+                                showBackAlert = true
+                            },
+                            onHistory: {
+                                print("History tapped")
+                            }
+                        )
+                        
+                        Spacer()
+                        
+                        // MARK: - Container D (Speech Bubble)
+                        SpeechBubbleUser(
+                            pinyinText: $pinyin,
+                            chineseText: $chinese,
+                            translationText: $translation
+                        )
+                        .padding(.bottom, 12)
+                        
+                        // MARK: - Container P (button to repeat earlier question)
+                        Button(action: {
+                            print("Repeat tapped")
+                        }) {
+                            Text("Please repeat what you said earlier")
+                                .font(.system(size: 15, weight: .medium))
+                                .foregroundColor(.black)
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 14)
+                                .frame(maxWidth: .infinity)
+                        }
+                        .background(
+                            Capsule()
+                                .fill(.ultraThinMaterial)
+                        )
+                        .overlay(
+                            Capsule()
+                                .stroke(Color.white.opacity(0.4), lineWidth: 1)
+                        )
+                        .padding(.horizontal, 40)
+                        .padding(.bottom, 20)
+                        
+                        // MARK: - Container E (Action Bar)
+                        ActionBar(
+                            isPressed: $isPressed,
+                            onMainAction: {
+                                print("Mic tapped")
+                            },
+                            onSecondaryAction: {
+                                print("Vocabulary tapped")
+                            }, isCircle: true
+                        ) {
+                            Image(systemName: "mic.fill")
+                                .font(.system(size: 50))
+                                .foregroundColor(.white)
+                        }
+                        .padding(.bottom, -50)
+                        .padding(.top, -20)
+                    }
+                }
+                .navigationBarBackButtonHidden(true)
+                .toolbar(.hidden, for: .navigationBar)
+                .customAlert(
+                    isPresented: $showBackAlert,
+                    alert: PopUpData(
+                        icon: "pause.circle",
+                        iconColor: .black,
+                        title: "Percakapan Dijeda",
+                        secondaryButtonTitle: "Lanjutkan Percakapan",
+                        primaryButtonTitle: "Keluar dari Percakapan",
+                        secondaryAction: {
+                            showBackAlert = false
                         },
-                        onHistory: {
-                            print("History tapped")
+                        primaryAction: {
+                            showBackAlert = false
+                            goToMainMenu = true
                         }
                     )
-                    
-                    Spacer()
-                    
-                    // MARK: - Container D (Speech Bubble)
-                    SpeechBubbleUser(
-                        pinyinText: $pinyin,
-                        chineseText: $chinese,
-                        translationText: $translation
-                    )
-                    .padding(.bottom, 12)
-                    
-                    
-                    // MARK: - Container P (button to repeat earlier question)
-                    Button(action: {
-                        print("Repeat tapped")
-                    }) {
-                        Text("Please repeat what you said earlier")
-                            .font(.system(size: 15, weight: .medium))
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 14)
-                            .frame(maxWidth: .infinity)
-                    }
-                    .background(
-                        Capsule()
-                            .fill(.ultraThinMaterial)
-                    )
-                    .overlay(
-                        Capsule()
-                            .stroke(Color.white.opacity(0.4), lineWidth: 1)
-                    )
-                    .padding(.horizontal, 40)
-                    .padding(.bottom, 20)
-                    
-                    
-                    // MARK: - Container E (Action Bar)
-                    ActionBar(
-                        isPressed: $isPressed,
-                        onMainAction: {
-                            print("Mic tapped")
-                        },
-                        onSecondaryAction: {
-                            print("Vocabulary tapped")
-                        }, isCircle: true
-                    )
-                    {
-                        Image(systemName: "mic.fill")
-                            .font(.system(size: 50))
-                            .foregroundColor(.white)
-                    }
-                    .padding(.bottom, -50)
-                    .padding(.top, -20)
-                    
-                }
-            }
-            .navigationBarBackButtonHidden(true)
-                .toolbar(.hidden, for: .navigationBar)
-            .customAlert(
-                isPresented: $showBackAlert,
-                alert: PopUpData(
-                    icon: "pause.circle",
-                    iconColor: .black,
-                    title: "Percakapan Dijeda",
-                    secondaryButtonTitle: "Lanjutkan Percakapan",
-                    primaryButtonTitle: "Keluar dari Percakapan",
-                    secondaryAction: {
-                        showBackAlert = false  // tutup alert, tetap di halaman
-                    },
-                    primaryAction: {
-                        showBackAlert = false
-                        goToMainMenu = true  // ← navigasi ke MainMenuSwipe
-                    }
                 )
-            )
+            }
+            // ✅ Fix issue 3: Ganti NavigationLink(isActive:) yang deprecated
+            // dengan navigationDestination(isPresented:)
+            .navigationDestination(isPresented: $goToMainMenu) {
+                InteractionNPCView()
+            }
         }
-        // Letakkan NavigationLink “invisible” di level paling atas dalam NavigationStack
-            .background(
-                NavigationLink(destination: InteractionNPCView(), isActive: $goToMainMenu) {
-                    EmptyView()
-                }
-            )
-        }
-//        .navigationBarBackButtonHidden(true)
     }
 }
-
-
-
-
- 
-
 
 // MARK: - Speech Bubble
 struct SpeechBubbleUser: View {
@@ -170,8 +158,7 @@ struct SpeechBubbleUser: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 10)
                 }
-                .frame(maxHeight: 120) //scroll aktif kalau kepanjangan
-                
+                .frame(maxHeight: 120)
                 
                 // ACTION BUTTONS
                 HStack {
@@ -192,9 +179,7 @@ struct SpeechBubbleUser: View {
                     .shadow(color: .black.opacity(0.2), radius: 0, x: 0, y: 0)
                     .disabled(isEmpty)
                     
-                    
                     Spacer()
-                    
                     
                     // SEND
                     Button(action: {
@@ -216,26 +201,21 @@ struct SpeechBubbleUser: View {
             }
             .padding(14)
             .frame(maxWidth: 400)
-            
-            // BACKGROUND GLASS
             .background(
                 ZStack {
                     RoundedRectangle(cornerRadius: 40)
                         .fill(Color.white)
                 }
-            
-            .overlay(
-                RoundedRectangle(cornerRadius: 40)
-                    .stroke(Color.white.opacity(0.5), lineWidth: 1)
-            )
-            
-            // TAIL (KANAN BAWAH)
-            .overlay(alignment: .bottomTrailing) {
-                BubbleTail()
-                    .fill(Color.white)
-                    .frame(width: 40, height: 12)
-                    .rotationEffect(.degrees(180))
-                    .offset(x: -30, y: 10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 40)
+                        .stroke(Color.white.opacity(0.5), lineWidth: 1)
+                )
+                .overlay(alignment: .bottomTrailing) {
+                    BubbleTail()
+                        .fill(Color.white)
+                        .frame(width: 40, height: 12)
+                        .rotationEffect(.degrees(180))
+                        .offset(x: -30, y: 10)
                 }
             )
         }
@@ -266,34 +246,6 @@ struct BubbleTail: Shape {
     }
 }
 
-
-
-
-
 #Preview {
     InteractionPageUser()
 }
-
-
-
-//// Interaction Container
-//VStack {
-//    Spacer()
-//
-//    // container D
-//    ZStack {
-//        // bubble image
-//
-//        VStack {
-//            // textview pinyin
-//            // textview hanzi
-//            // textview terjemahan
-//            Text("")
-//
-//            // text action container
-//            HStack {
-//                // delete & send button
-//            }
-//        }
-//    }
-//}
